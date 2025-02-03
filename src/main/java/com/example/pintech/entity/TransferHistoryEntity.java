@@ -1,10 +1,12 @@
 package com.example.pintech.entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
 
 import java.time.LocalDateTime;
 
 @Entity
+@Getter
 public class TransferHistoryEntity {
 
     @Id

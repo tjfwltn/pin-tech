@@ -1,11 +1,15 @@
 package com.example.pintech.entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Getter
+@Setter
 public class AccountEntity {
 
     @Id
@@ -14,6 +18,9 @@ public class AccountEntity {
 
     @Column(nullable = false)
     private Long balance;
+
+    @Column(nullable = false)
+    private String bankName;
 
     @Column(nullable = false, unique = true)
     private String accountNumber;
