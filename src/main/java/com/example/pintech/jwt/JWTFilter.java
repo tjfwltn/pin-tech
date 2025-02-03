@@ -12,6 +12,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 public class JWTFilter extends OncePerRequestFilter {
 
@@ -62,5 +63,13 @@ public class JWTFilter extends OncePerRequestFilter {
         SecurityContextHolder.getContext().setAuthentication(authToken);
 
         filterChain.doFilter(request, response);
+    }
+
+    @Override
+    protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
+        String[] excludePath = {"/login", "/signup"};
+        String path = request.getRequestURI();
+        return Arrays.stream(excludePath)
+                .anyMatch(path::startsWith);
     }
 }
